@@ -9,19 +9,20 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
+    session["init"] = true
   p  session[:name1] = params[:name1]
   p  session[:name2] = params[:name2]
   p  session[:name1]
   p  session[:name2]
-    redirect '/play'
+    redirect to('/play')
   end
 
   get '/play' do
- p  session[:name1].inspect
- p  session[:name2].inspect
+ p  session[:name1]
+ p  session[:name2]
 
- p   @name1 = 'James'
- p   @name2 = 'Luke'
+ p   @name1 = session[:name1]
+ p   @name2 = session[:name2]
     erb(:play)
   end
 
